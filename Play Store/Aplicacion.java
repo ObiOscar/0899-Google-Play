@@ -15,7 +15,7 @@ public class Aplicacion extends Producto
     private String nombre;
     private double tamañoMB;
     private Categoria tipo;
-	private int aplicacionComprada;
+    private int aplicacionComprada;
 
     /**
      * Constructor de la calse Apliacion
@@ -26,7 +26,7 @@ public class Aplicacion extends Producto
         super(nombre);
         tamañoMB = tamaño;
         this.tipo = tipo;  
-		aplicacionComprada = 0;   
+        aplicacionComprada = 0;   
     }
 
     public String getNombre()
@@ -39,37 +39,38 @@ public class Aplicacion extends Producto
         return tamañoMB;
     }
 
-	public int vecesCompradoAplicacion(){
-		return aplicacionComprada++;
-	}
+    public int vecesCompradoAplicacion(){
+        return aplicacionComprada++;
+    }
     
     public String getCategoria()
     {
-		String cadena = tipo + "";
+        String cadena = tipo + "";
 
-		String primeraLetra = cadena.substring(0,1);
-		String restoCadena = cadena.substring(1,cadena.length());
+        String primeraLetra = cadena.substring(0,1);
+        String restoCadena = cadena.substring(1,cadena.length());
 
-		cadena = primeraLetra.toUpperCase() + restoCadena.toLowerCase();
+        cadena = primeraLetra.toUpperCase() + restoCadena.toLowerCase();
 
-		return cadena;
+        return cadena;
     }
 
-	public double getPrecio(){
-		double precioDevolver = PRECIO_INICIAL_APLICACIONES;
-		
-		if(aplicacionComprada >= MINIMO_VECES_VENDIDA && getCategoria().equals("Juegos")){
-			precioDevolver = PRECIO_APLICACIONES_VENDIDA_MAS_DOS_VECES_SI_ES_JUEGO;
-		}
+    public double getPrecio(){
+        double precioDevolver = PRECIO_INICIAL_APLICACIONES;
+        
+        
+            if(getCategoria().equals("Juegos")){
+                precioDevolver = PRECIO_APLICACIONES_VENDIDA_MAS_DOS_VECES_SI_ES_JUEGO;
+            }
 
-		if(getCategoria().equals("Productividad")){
-			precioDevolver = PRECIO_PRODUCTIVIDAD;
-		}
+            if(getCategoria().equals("Productividad")){
+                precioDevolver = PRECIO_PRODUCTIVIDAD;
+            }
 
-		if(getCategoria().equals("Multimedia") || getCategoria().equals("Comunicaciones") ){
-			precioDevolver = PRECIO_MULTIMEDIA_Y_COMUNICACIONES;
-		}
-
-		return precioDevolver;
-	} 
+            if(getCategoria().equals("Multimedia") || getCategoria().equals("Comunicaciones") ){
+                precioDevolver = PRECIO_MULTIMEDIA_Y_COMUNICACIONES;
+            }
+        
+        return precioDevolver;
+    } 
 }

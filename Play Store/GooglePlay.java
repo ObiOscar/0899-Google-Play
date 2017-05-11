@@ -7,13 +7,18 @@ import java.util.ArrayList;
  */
 public class GooglePlay
 {
+    static final double PRECIO_INICIAL_APLICACIONES = 0.99;
+    static final double MINIMO_VECES_VENDIDA  = 2;
     private ArrayList<Usuario> listaUsuarios;
-    private ArrayList<Producto> productosGooglePlay;    
+    private ArrayList<Producto> productosGooglePlay; 
+    private ArrayList<Producto> productosComprados;
+    
     
     public GooglePlay()
     {
         listaUsuarios = new ArrayList<>();
         productosGooglePlay = new ArrayList<>();
+        productosComprados = new ArrayList<>();
     }
     
     public int getNumeroProductos(){
@@ -34,27 +39,54 @@ public class GooglePlay
         listaUsuarios.add(usuario);
     }
 
-	public int comprar(String correo, String titulo){
-		int resultadoCompra = -1;		//devuelve -1 si no encuentra titulo
-		boolean correoExiste = false;
-		boolean tituloExiste = false;
-		
-		for(Usuario usuario : listaUsuarios){
-			if(usuario.getNombreCuenta().equals(correo)){
-				correoExiste = true;
-			}
-		}
+    public double comprar(String correo, String titulo){
+        double resultadoCompra = -1;        //devuelve -1 si no encuentra titulo
+        boolean correoExiste = false;
+        boolean tituloExiste = false;
+        int numeroProducto = 0;
+        int contadorProductoEncontrado = 0;
+        
+        for(Usuario usuario : listaUsuarios){
+            if(usuario.getNombreCuenta().equals(correo) && !correoExiste){
+                correoExiste = true;
+            }
+        }
+        
+        for (int valorActual = 0; productosGooglePlay.size() > valorActual; valorActual++) {
+            if(productosGooglePlay.get(valorActual).getTituloONombre().equals(titulo) && !tituloExiste){
+                tituloExiste = true;
+                numeroProducto = valorActual;
+            }
+        }
 
-		for(Producto productoGoogle : productosGooglePlay){
-			if(productoGoogle.getTituloONombre().equals(titulo) && tituloExiste){
-				tituloExiste = true;
-			}
-		}
+        
+        if(correoExiste && tituloExiste){
+            resultadoCompra = PRECIO_INICIAL_APLICACIONES;
+            for(int i = 0; i<productosComprados.size(); i++){
+                if(productosComprados.get(i).getTituloONombre().equals(titulo)){  
+                    contadorProductoEncontrado++;
+              }
+            }
+            if(contadorProductoEncontrado >= MINIMO_VECES_VENDIDA){
+                resultadoCompra = productosGooglePlay.get(numeroProducto).getPrecio();//comprueb    o el precio
+             }
+            productosComprados.add(productosGooglePlay.get(numeroProducto));
+            productosGooglePlay.isEmpty(productosGooglePlay.get(numeroProducto));
+            
+        }
 
-		if(correoExiste && tituloExiste){
-			//compruebo el precio
-		}
-
-		return resultadoCompra;
-	}
+        return resultadoCompra;
+    }
+    
+    public boolean estaDuplicadoEnCompra(ArrayList<Producto> lista){
+        boolean estaDuplicado = false;
+        for(int i=0;i<lista.size()-1;i++){
+                for(int j=i+1;j<lista.size();j++){
+                    if(lista.get(i).getTituloONombre().equals(lista.get(j).getTituloONombre())){
+                        estaDuplicado = true;
+                    }
+                }
+            }
+        return estaDuplicado;
+    }
 }
