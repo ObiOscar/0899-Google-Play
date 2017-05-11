@@ -21,5 +21,7 @@ abstract class Producto
     {
         return nombre;
     }
+
+	abstract double getPrecio();
    
 }

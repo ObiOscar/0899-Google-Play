@@ -36,4 +36,11 @@ public class Pelicula extends ProductoMultimedia
          
         return cadenaADevolver;
     }
+
+	public double getPrecio(){
+		double precioDevolver = 1;
+
+
+		return precioDevolver;
+	} 
 }

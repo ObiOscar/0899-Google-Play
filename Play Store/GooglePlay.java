@@ -34,8 +34,27 @@ public class GooglePlay
         listaUsuarios.add(usuario);
     }
 
-	/*public int comprar(String correo, String titulo){
-	 int resultadoCompra = -1;		//devuelve -1 si no encuentra titulo
-	}*/
+	public int comprar(String correo, String titulo){
+		int resultadoCompra = -1;		//devuelve -1 si no encuentra titulo
+		boolean correoExiste = false;
+		boolean tituloExiste = false;
+		
+		for(Usuario usuario : listaUsuarios){
+			if(usuario.getNombreCuenta().equals(correo)){
+				correoExiste = true;
+			}
+		}
 
+		for(Producto productoGoogle : productosGooglePlay){
+			if(productoGoogle.getTituloONombre().equals(titulo) && tituloExiste){
+				tituloExiste = true;
+			}
+		}
+
+		if(correoExiste && tituloExiste){
+			//compruebo el precio
+		}
+
+		return resultadoCompra;
+	}
 }

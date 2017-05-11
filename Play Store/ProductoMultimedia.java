@@ -29,4 +29,5 @@ public abstract class ProductoMultimedia extends Producto
         return anno;
     }
 
+	abstract double getPrecio();
 }

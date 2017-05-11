@@ -29,4 +29,11 @@ public class Libro extends ProductoMultimedia
     {
         return ficcion;
     }
+
+	public double getPrecio(){
+		double precioDevolver = 1;
+
+
+		return precioDevolver;
+	} 
 }
