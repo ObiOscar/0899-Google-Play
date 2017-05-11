@@ -46,19 +46,25 @@ public class GooglePlay
         int numeroProducto = 0;
         int contadorProductoEncontrado = 0;
         
-        for(Usuario usuario : listaUsuarios){
-            if(usuario.getNombreCuenta().equals(correo) && !correoExiste){
+        int contadorUsuario = 0;
+        while (!correoExiste && listaUsuarios.size() > contadorUsuario){
+            if(listaUsuarios.get(contadorUsuario).getNombreCuenta().equals(correo)){
                 correoExiste = true;
             }
+            contadorUsuario++;
         }
         
-        for (int valorActual = 0; productosGooglePlay.size() > valorActual; valorActual++) {
-            if(productosGooglePlay.get(valorActual).getTituloONombre().equals(titulo) && !tituloExiste){
+        int contadorProducto = 0;
+        while (!tituloExiste && productosGooglePlay.size() > contadorProducto){
+            if(productosGooglePlay.get(contadorProducto).getTituloONombre().equals(titulo) && !tituloExiste){
                 tituloExiste = true;
-                numeroProducto = valorActual;
+                numeroProducto = contadorProducto;
             }
+            contadorProducto++;
         }
 
+
+        
         
         if(correoExiste && tituloExiste){
             resultadoCompra = PRECIO_INICIAL_APLICACIONES;
@@ -71,9 +77,14 @@ public class GooglePlay
                 resultadoCompra = productosGooglePlay.get(numeroProducto).getPrecio();//comprueb    o el precio
              }
             productosComprados.add(productosGooglePlay.get(numeroProducto));
-            productosGooglePlay.isEmpty(productosGooglePlay.get(numeroProducto));
-            
+             if(productosGooglePlay.get(numeroProducto).getClass().getSimpleName().equals("Libro")){             
+                 resultadoCompra = productosGooglePlay.get(numeroProducto).getPrecio();
+            }
+             if(productosGooglePlay.get(numeroProducto).getClass().getSimpleName().equals("Pelicula")){             
+                 resultadoCompra = productosGooglePlay.get(numeroProducto).getPrecio();
+            }
         }
+        
 
         return resultadoCompra;
     }

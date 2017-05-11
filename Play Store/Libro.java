@@ -30,10 +30,11 @@ public class Libro extends ProductoMultimedia
         return ficcion;
     }
 
-	public double getPrecio(){
-		double precioDevolver = 1;
+    public double getPrecio(){
+        double precioDevolver = 1;
 
+        precioDevolver = (numeroPaginas / 100 ) * (getAno() - 2010);
 
-		return precioDevolver;
-	} 
+        return precioDevolver;
+    } 
 }

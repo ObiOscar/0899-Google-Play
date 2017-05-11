@@ -37,10 +37,12 @@ public class Pelicula extends ProductoMultimedia
         return cadenaADevolver;
     }
 
-	public double getPrecio(){
-		double precioDevolver = 1;
+    public double getPrecio(){
+        double precioDevolver = 1;
 
+        precioDevolver = (getCalidad().equals("FullHD")) ? 10 : 5;
+        precioDevolver = (getAno() < 2000) ? precioDevolver/2 : precioDevolver;
 
-		return precioDevolver;
-	} 
+        return precioDevolver;
+    } 
 }

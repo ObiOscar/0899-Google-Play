@@ -58,18 +58,17 @@ public class Aplicacion extends Producto
     public double getPrecio(){
         double precioDevolver = PRECIO_INICIAL_APLICACIONES;
         
-        
-            if(getCategoria().equals("Juegos")){
-                precioDevolver = PRECIO_APLICACIONES_VENDIDA_MAS_DOS_VECES_SI_ES_JUEGO;
-            }
+        if(getCategoria().equals("Juegos")){
+            precioDevolver = PRECIO_APLICACIONES_VENDIDA_MAS_DOS_VECES_SI_ES_JUEGO;
+        }
 
-            if(getCategoria().equals("Productividad")){
-                precioDevolver = PRECIO_PRODUCTIVIDAD;
-            }
+        if(getCategoria().equals("Productividad")){
+            precioDevolver = PRECIO_PRODUCTIVIDAD;
+        }
 
-            if(getCategoria().equals("Multimedia") || getCategoria().equals("Comunicaciones") ){
-                precioDevolver = PRECIO_MULTIMEDIA_Y_COMUNICACIONES;
-            }
+        if(getCategoria().equals("Multimedia") || getCategoria().equals("Comunicaciones") ){
+            precioDevolver = PRECIO_MULTIMEDIA_Y_COMUNICACIONES;
+        }
         
         return precioDevolver;
     } 
